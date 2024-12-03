@@ -28,18 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Accesorios");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Telefono", new System.Windows.Forms.TreeNode[] {
-            treeNode19});
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Electronica", new System.Windows.Forms.TreeNode[] {
-            treeNode20});
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Muebles ");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Decoracion");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Hogar", new System.Windows.Forms.TreeNode[] {
-            treeNode22,
-            treeNode23});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Accesorios");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Telefono", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Electronica", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Muebles ");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Decoracion");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hogar", new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.lblProductoExistenmte = new System.Windows.Forms.Label();
             this.lblPrecioProducto = new System.Windows.Forms.Label();
             this.lblProducto = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -54,7 +55,7 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblProductoExistenmte = new System.Windows.Forms.Label();
+            this.Estado = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,23 +97,33 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            treeNode19.Name = "Nodo2";
-            treeNode19.Text = "Accesorios";
-            treeNode20.Name = "Nodo1";
-            treeNode20.Text = "Telefono";
-            treeNode21.Name = "Nodo0";
-            treeNode21.Text = "Electronica";
-            treeNode22.Name = "Nodo4";
-            treeNode22.Text = "Muebles ";
-            treeNode23.Name = "Nodo5";
-            treeNode23.Text = "Decoracion";
-            treeNode24.Name = "Nodo3";
-            treeNode24.Text = "Hogar";
+            treeNode1.Name = "Nodo2";
+            treeNode1.Text = "Accesorios";
+            treeNode2.Name = "Nodo1";
+            treeNode2.Text = "Telefono";
+            treeNode3.Name = "Nodo0";
+            treeNode3.Text = "Electronica";
+            treeNode4.Name = "Nodo4";
+            treeNode4.Text = "Muebles ";
+            treeNode5.Name = "Nodo5";
+            treeNode5.Text = "Decoracion";
+            treeNode6.Name = "Nodo3";
+            treeNode6.Text = "Hogar";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode21,
-            treeNode24});
+            treeNode3,
+            treeNode6});
             this.treeView1.Size = new System.Drawing.Size(294, 508);
             this.treeView1.TabIndex = 0;
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
+            // 
+            // lblProductoExistenmte
+            // 
+            this.lblProductoExistenmte.AutoSize = true;
+            this.lblProductoExistenmte.Location = new System.Drawing.Point(17, 486);
+            this.lblProductoExistenmte.Name = "lblProductoExistenmte";
+            this.lblProductoExistenmte.Size = new System.Drawing.Size(119, 13);
+            this.lblProductoExistenmte.TabIndex = 12;
+            this.lblProductoExistenmte.Text = "Producto excixtente: 10";
             // 
             // lblPrecioProducto
             // 
@@ -207,13 +218,15 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(584, 150);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.Estado});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 0);
@@ -222,6 +235,7 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -233,16 +247,7 @@
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Producto";
-            // 
-            // lblProductoExistenmte
-            // 
-            this.lblProductoExistenmte.AutoSize = true;
-            this.lblProductoExistenmte.Location = new System.Drawing.Point(17, 486);
-            this.lblProductoExistenmte.Name = "lblProductoExistenmte";
-            this.lblProductoExistenmte.Size = new System.Drawing.Size(119, 13);
-            this.lblProductoExistenmte.TabIndex = 12;
-            this.lblProductoExistenmte.Text = "Producto excixtente: 10";
+            this.columnHeader3.Text = "Cantidad";
             // 
             // Form1
             // 
@@ -283,6 +288,7 @@
         private System.Windows.Forms.Label lblPrecioProducto;
         private System.Windows.Forms.Label ProductosExistentes;
         private System.Windows.Forms.Label lblProductoExistenmte;
+        private System.Windows.Forms.ColumnHeader Estado;
     }
 }
 
